@@ -23,6 +23,9 @@
 # Maintainer: Pellegrino Prevete <pellegrinoprevete@gmail.com>
 # Contributor: aquova <mail at aquova dot net>
 
+_os="$( \
+  uname \
+    -o)"
 _Pkg="Gearboy"
 pkgname="gearboy"
 pkgver=3.6.1
@@ -46,8 +49,15 @@ license=(
 )
 depends=(
   'glew'
+  'gtk3'
   'sdl2'
 )
+makedepends=()
+if [[ "${_os}" == "Android" ]]; then
+  makedepends+=(
+    "libglvnd-dev"
+  )
+fi
 source=(
   "${url}/archive/refs/tags/${pkgver}.tar.gz"
 )
