@@ -116,7 +116,7 @@ package() {
     "${pkgdir}/usr/share/icons"
   install \
     -Dm644 \
-    "${srcdir}/icon.png" \
+    "${srcdir}/${pkgname}.png" \
     "${pkgdir}/usr/share/icons/${pkgname}.png"
   install \
     -Dm644 \
