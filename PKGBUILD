@@ -85,17 +85,17 @@ build() {
 
 package() {
   cd \
-    "${srcdir}/${_Pkg}-${pkgver}/platforms/linux"
+    "${srcdir}/${_Pkg}-${pkgver}"
   mkdir \
     -p \
     "${pkgdir}/opt/gearboy"
   install \
     -Dm755 \
-    "${pkgname}" \
+    "platforms/linux/${pkgname}" \
     "${pkgdir}/usr/lib/${pkgname}"
   install \
     -Dm644 \
-    "gamecontrollerdb.txt" \
+    "platforms/gamecontrollerdb.txt" \
     "${pkgdir}/usr/lib/${pkgname}"
   install \
     -dm755 \
