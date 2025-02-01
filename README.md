@@ -1,4 +1,4 @@
-# `aspe`
+# `gearboy`
 
 universal recipe for [user repo](../themartiancompany/ur).
 

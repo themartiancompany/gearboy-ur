@@ -23,27 +23,79 @@
 # Maintainer: Pellegrino Prevete <pellegrinoprevete@gmail.com>
 # Contributor: aquova <mail at aquova dot net>
 
+_Pkg="Gearboy"
 pkgname="gearboy"
 pkgver=3.6.1
 pkgrel=1
 pkgdesc="Game Boy / Gameboy Color emulator"
-url="https://github.com/drhelius/Gearboy"
-arch=("x86_64")
-license=("GPL3")
-depends=('glew' 'sdl2')
-source=("${url}/archive/refs/tags/${pkgver}.tar.gz")
-sha256sums=("f3775ce38c7b65a36f8a9cc783b22928d08ef13c3458b3cb0da45dab65cda82e")
+_http="https://github.com"
+_ns="drhelius"
+url="${_http}/${_ns}/${_Pkg}"
+arch=(
+  "x86_64"
+  'i686'
+  'arm'
+  'armv7l'
+  'aarch64'
+  'mips'
+  'powerpc'
+  'pentium4'
+)
+license=(
+  "GPL3"
+)
+depends=(
+  'glew'
+  'sdl2'
+)
+source=(
+  "${url}/archive/refs/tags/${pkgver}.tar.gz"
+)
+sha256sums=(
+  "f3775ce38c7b65a36f8a9cc783b22928d08ef13c3458b3cb0da45dab65cda82e"
+)
+
+_usr_get() {
+  local \
+    _bin
+  _bin="$( \
+    dirname \
+      "$(command \
+           -v \
+	   "env")")"
+  dirname \
+    "${_bin}"
+}
 
 build() {
-    cd $srcdir/Gearboy-${pkgver}/platforms/linux
-    make
+  cd \
+    "${srcdir}/${_Pkg}-${pkgver}/platforms/linux"
+  make
 }
 
 package() {
-    cd $srcdir/Gearboy-${pkgver}/platforms
-    mkdir -p "$pkgdir/opt/gearboy"
-    install -Dm755 linux/gearboy "$pkgdir/opt/gearboy"
-    install -Dm644 gamecontrollerdb.txt "$pkgdir/opt/gearboy"
-    mkdir -p "$pkgdir/usr/bin"
-    ln -s "/opt/gearboy/gearboy" "$pkgdir/usr/bin/gearboy"
+  cd \
+    "${srcdir}/${_Pkg}-${pkgver}/platforms/linux"
+  mkdir \
+    -p \
+    "${pkgdir}/opt/gearboy"
+  install \
+    -Dm755 \
+    "linux/${pkgname}" \
+    "${pkgdir}/usr/lib/${pkgname}"
+  install \
+    -Dm644 \
+    "gamecontrollerdb.txt" \
+    "${pkgdir}/usr/lib/${pkgname}"
+  install \
+    -dm755 \
+    "${pkgdir}/usr/bin"
+  ln \
+    -s \
+    "$(_usr_get)/lib/${pkgname}/${pkgname}" \
+    "${pkgdir}/usr/bin/${pkgname}"
+  install \
+    -Dm644 \
+    "LICENCE" \
+    "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
