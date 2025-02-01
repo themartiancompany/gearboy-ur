@@ -106,6 +106,6 @@ package() {
     "${pkgdir}/usr/bin/${pkgname}"
   install \
     -Dm644 \
-    "LICENCE" \
+    "LICENSE" \
     "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
