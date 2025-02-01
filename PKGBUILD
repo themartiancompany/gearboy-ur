@@ -61,14 +61,19 @@ fi
 _icon_ns="kodi-game"
 _icon_proj="game.libretro.gearboy"
 _icon_url="${_http}/${_icon_ns}/${_icon_proj}"
+_network="100"
+_fs="0x69470b18f8b8b5f92b48f6199dcb147b4be96571"
+_namespace="0x87003Bd6C074C713783df04f36517451fF34CBEf"
+_icon_sum="aa56beff8154c0b05e159a383adb2783382a5606068f6c5c1e9168dfdb14b2b0"
+_evmfs_icon_uri="evmfs://${_network}/${_fs}/${_namespace}/${_icon_sum}"
 source=(
   "${url}/archive/refs/tags/${pkgver}.tar.gz"
-  "${pkgname}.png::${_icon_url}/raw/refs/heads/master/${_icon_proj}/resources/icon.png"
+  "${pkgname}.png::${_evmfs_icon_uri}"
   "${pkgname}.desktop"
 )
 sha256sums=(
   "f3775ce38c7b65a36f8a9cc783b22928d08ef13c3458b3cb0da45dab65cda82e"
-  "e643b41531dd9c8ed8acece67d7c1e601e701290167f9ed70079b30614845ecd"
+  "${_icon_sum}"
   "5a80ce1059171c5f4c65bb32b223a6494b5695e8d589db1bef7bda295cb9eb63"
 )
 
