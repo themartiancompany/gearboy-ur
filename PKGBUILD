@@ -119,7 +119,7 @@ package() {
     "${srcdir}/${pkgname}.png" \
     "${pkgdir}/usr/share/icons/${pkgname}.png"
   install \
-    -Dm644 \
+    -Dm755 \
     "${srcdir}/${pkgname}.png" \
     "${pkgdir}/usr/share/applications/${pkgname}.desktop"
   install \
