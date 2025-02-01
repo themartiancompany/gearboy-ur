@@ -86,9 +86,9 @@ build() {
 package() {
   cd \
     "${srcdir}/${_Pkg}-${pkgver}"
-  mkdir \
-    -p \
-    "${pkgdir}/opt/gearboy"
+  install \
+    -dm755 \
+    "${pkgdir}/usr/lib/${pkgname}"
   install \
     -Dm755 \
     "platforms/linux/${pkgname}" \
