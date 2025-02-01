@@ -91,7 +91,7 @@ package() {
     "${pkgdir}/opt/gearboy"
   install \
     -Dm755 \
-    "linux/${pkgname}" \
+    "${pkgname}" \
     "${pkgdir}/usr/lib/${pkgname}"
   install \
     -Dm644 \
