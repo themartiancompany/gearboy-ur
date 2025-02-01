@@ -64,7 +64,7 @@ _icon_url="${_http}/${_icon_ns}/${_icon_proj}"
 source=(
   "${url}/archive/refs/tags/${pkgver}.tar.gz"
   "${_icon_url}/raw/refs/heads/master/${_icon_proj}/resources/icon.png"
-  "gearboy.desktop"
+  "${pkgname}.desktop"
 )
 sha256sums=(
   "f3775ce38c7b65a36f8a9cc783b22928d08ef13c3458b3cb0da45dab65cda82e"
@@ -118,6 +118,10 @@ package() {
     -Dm644 \
     "${srcdir}/icon.png" \
     "${pkgdir}/usr/share/icons/${pkgname}.png"
+  install \
+    -Dm644 \
+    "${srcdir}/${pkgname}.png" \
+    "${pkgdir}/usr/share/applications/${pkgname}.desktop"
   install \
     -Dm644 \
     "LICENSE" \
