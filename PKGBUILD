@@ -58,11 +58,18 @@ if [[ "${_os}" == "Android" ]]; then
     "libglvnd-dev"
   )
 fi
+_icon_ns="kodi-game"
+_icon_proj="game.libretro.gearboy"
+_icon_url="${_http}/${_icon_ns}/${_icon_proj}"
 source=(
   "${url}/archive/refs/tags/${pkgver}.tar.gz"
+  "${_icon_url}/raw/refs/heads/master/${_icon_proj}/resources/icon.png"
+  "gearboy.desktop"
 )
 sha256sums=(
   "f3775ce38c7b65a36f8a9cc783b22928d08ef13c3458b3cb0da45dab65cda82e"
+  "ciao"
+  "5a80ce1059171c5f4c65bb32b223a6494b5695e8d589db1bef7bda295cb9eb63"
 )
 
 _usr_get() {
@@ -104,6 +111,13 @@ package() {
     -s \
     "$(_usr_get)/lib/${pkgname}/${pkgname}" \
     "${pkgdir}/usr/bin/${pkgname}"
+  install \
+    -dm755 \
+    "${pkgdir}/usr/share/icons"
+  install \
+    -Dm644 \
+    "${srcdir}/icon.png" \
+    "${pkgdir}/usr/share/icons/${pkgname}.png"
   install \
     -Dm644 \
     "LICENSE" \
